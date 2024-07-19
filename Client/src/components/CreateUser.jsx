@@ -24,7 +24,7 @@ class Signup extends Component {
       };
 
       try {
-        const response = await fetch("http://localhost:3000/create", {
+        const response = await fetch("https://chat-application-backend-puce.vercel.app/create", {
           method: "POST",
           body: JSON.stringify(data),
           headers: { "Content-Type": "application/json" },
