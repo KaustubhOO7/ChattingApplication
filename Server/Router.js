@@ -16,7 +16,7 @@ const server = app.listen(PORT, () => {
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3006",
+        origin: "https://chat-application-frontend-ivory.vercel.app",
         methods: ["GET", "POST"]
     }
 });
