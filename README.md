@@ -11,4 +11,4 @@ Users can securely log in to their accounts using their username and password af
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 
-View Project - [Link](https://chat-application-frontend-ivory.vercel.app/)
+View Project - [Here](https://chat-application-frontend-ivory.vercel.app/)
