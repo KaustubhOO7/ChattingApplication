@@ -5,7 +5,7 @@ import "./css/ChattingUI.css";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-const socket = io.connect("https://chat-application-backend-puce.vercel.app");
+const socket = io.connect("https://chatapplication-backend-vur1.onrender.com");
 
 function ChatApp() {
   const [message, setMessage] = useState("");
