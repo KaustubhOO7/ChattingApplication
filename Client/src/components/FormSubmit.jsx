@@ -19,7 +19,7 @@ class AcceptingForm extends Component {
     const data = { email: this.state.email, password: this.state.password };
 
     try {
-      const response = await fetch("https://chat-application-backend-puce.vercel.app/", {
+      const response = await fetch("https://chat-application-backend-puce.vercel.app/check", {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },

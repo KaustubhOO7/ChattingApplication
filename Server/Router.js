@@ -68,7 +68,11 @@ io.on("connection", (socket) => {
 
 //Server Code---------------------------------------------------------------------------
 
-app.post("/", async (req, res) => {
+app.get("/",(req,res) => {
+  res.json("Hello");
+})
+
+app.post("/check", async (req, res) => {
   
   const { email,password} = req.body;
   const check = await checkdetails(email,password);
