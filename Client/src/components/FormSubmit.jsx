@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./css/FormSubmit.css";
-import { Link,withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class AcceptingForm extends Component {
   state = {
@@ -19,23 +19,29 @@ class AcceptingForm extends Component {
     const data = { email: this.state.email, password: this.state.password };
 
     try {
-      const response = await fetch("https://chatapplication-backend-cjhz.onrender.com/check", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await fetch(
+        "https://chatapplication-backend-cjhz.onrender.com/check",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       const { message } = await response.json();
 
-      if (message && message !== "user not exist" && message !== 'wrong email or password') {
-          this.props.history.replace({
-            pathname : '/login',
-            state : {data : message}
-          });
-      } else if(message && message === 'wrong email or password') {
+      if (
+        message &&
+        message !== "user not exist" &&
+        message !== "wrong email or password"
+      ) {
+        this.props.history.replace({
+          pathname: "/login",
+          state: { data: message },
+        });
+      } else if (message && message === "wrong email or password") {
         alert("Wrong Email Id or Password");
-      }
-      else{
+      } else {
         alert("User does not Exist.Create an Account to Login!!");
       }
     } catch (error) {
@@ -72,7 +78,9 @@ class AcceptingForm extends Component {
                             onChange={this.changeHandle}
                             required
                           />
-                          <label htmlFor="email" className="form-label">Email</label>
+                          <label htmlFor="email" className="form-label">
+                            Email
+                          </label>
                         </div>
                       </div>
                       <div className="col-12">
@@ -87,14 +95,18 @@ class AcceptingForm extends Component {
                             onChange={this.changeHandle}
                             required
                           />
-                          <label htmlFor="password" className="form-label">Password</label>
+                          <label htmlFor="password" className="form-label">
+                            Password
+                          </label>
                         </div>
                       </div>
-                      <div className="col-12">
-                      </div>
+                      <div className="col-12"></div>
                       <div className="col-12">
                         <div className="d-grid">
-                          <button className="btn bsb-btn-2xl btn-primary b4-button" type="submit">
+                          <button
+                            className="btn bsb-btn-2xl btn-primary b4-button"
+                            type="submit"
+                          >
                             Log in
                           </button>
                         </div>
@@ -105,8 +117,18 @@ class AcceptingForm extends Component {
                     <div className="col-10">
                       <hr className="mt-5 mb-4 border-secondary-subtle" />
                       <div className="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
-                        <Link to="/signup" className="link-secondary text-decoration-none">Create new account</Link>
-                        <Link to="/forgotPpassword" className="link-secondary text-decoration-none">Forgot password ?</Link>
+                        <Link
+                          to="/signup"
+                          className="link-secondary text-decoration-none"
+                        >
+                          Create new account
+                        </Link>
+                        <Link
+                          to="/forgotPpassword"
+                          className="link-secondary text-decoration-none"
+                        >
+                          Forgot password ?
+                        </Link>
                       </div>
                     </div>
                   </div>

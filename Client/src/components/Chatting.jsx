@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation,useHistory } from "react-router-dom";
 import { io } from "socket.io-client";
 import "./css/ChattingUI.css";
 import { Bounce, toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const socket = io.connect("https://chatapplication-backend-cjhz.onrender.com");
 
@@ -15,6 +15,7 @@ function ChatApp() {
   const [currentUser, setCurrentUser] = useState("");
 
   const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
@@ -29,9 +30,9 @@ function ChatApp() {
     });
 
     socket.on("newUser", (data) => {
-      if(data.message !== location.state.data) notify(data.user);
+      if (data.message !== location.state.data) notify(data.user);
     });
-  
+
     return () => {
       socket.off("receive_message");
       socket.off("showUsers");
@@ -40,8 +41,7 @@ function ChatApp() {
   }, [location.state.data]);
 
   const notify = (user) => {
-    if(user && user !== location.state.data)
-    {
+    if (user && user !== location.state.data) {
       toast.success(`${user} has joined the Chat`, {
         position: "top-right",
         autoClose: 5000,
@@ -51,7 +51,7 @@ function ChatApp() {
         draggable: true,
         progress: undefined,
         theme: "light",
-        transition : Bounce,
+        transition: Bounce,
       });
     }
   };
@@ -80,14 +80,19 @@ function ChatApp() {
 
   function loggingOut() {
     socket.emit("disconnected", { exit: location.state.data });
+    localStorage.clear();  
+    sessionStorage.clear();
+    history.replace("/");
   }
-
 
   return (
     <div className="mainContent">
       <div className="notice">Do not Refresh after starting conversation</div>
       <ToastContainer />
-      <div className={!show ? "hamburger" : "hamburgerChange"} onClick={() => setCard(!show)}>
+      <div
+        className={!show ? "hamburger" : "hamburgerChange"}
+        onClick={() => setCard(!show)}
+      >
         <div className={!show ? "line1" : "line1Change"}></div>
         <div className={!show ? "line2" : "line2Change"}></div>
         <div className={!show ? "line3" : "line3Change"}></div>
@@ -125,11 +130,9 @@ function ChatApp() {
           Send
         </button>
       </div>
-      <Link to="/">
         <button type="submit" className="logoutButton" onClick={loggingOut}>
           Logout
         </button>
-      </Link>
       <div className={show ? "onlineActive" : "onlineActiveHide"}>
         <div className={show ? "currentUser" : "currentUserHide"}>
           Welcome, {currentUser}
@@ -144,12 +147,6 @@ function ChatApp() {
           </div>
         ))}
       </div>
-      {/* <img
-        src={hamburger}
-        className="burgerimage"
-        onClick={() => setCard(!show)}
-        alt=""
-      /> */}
     </div>
   );
 }
