@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const url = "mongodb+srv://raghavsharma007r:40EvtYoSlj2wB520@cluster0.zf7liou.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const url = "mongodb+srv://<username>:<password>.zf7liou.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 mongoose.connect(url)
 .then(() => console.log("Connected to MondoDB..."))
 .catch((err) => console.error("Could Not Connect to DB...",err));
